@@ -19,7 +19,7 @@ export default function Home() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        console.log("tried connecting")
+        console.log("tried connecting");
         const response = await axios.get(`http://localhost:4000/users`);
         setUsers(response.data.reverse());
       } catch (error) {
@@ -32,16 +32,29 @@ export default function Home() {
 
   return (
     <div className="w-screen h-screen flex flex-col justify-center items-center ">
-      <div className="uppercase">test postgres API dockerized</div>
+      <div className="space-y-4 w-full max-w-2xl">
+        <div className="uppercase">
+          <h1>Test postgres API dockerized</h1>
+        </div>
 
-      {/*Display Users */}
+        {/*Display Users */}
 
-      <div className="flex flex-col">
-        {users.map((user) => (
-          <div key={user.id}>
-              <CardComponent card={user}/>
-          </div>
-        ))}
+        <div className="space-y-2">
+          {users.map((user) => (
+            <div
+              key={user.id}
+              className="flex items-center justify-between bg-white p-4 rounded-lg shadow "
+            >
+              <CardComponent card={user} />
+              <button
+                onClick={() => {}}
+                className="bg-red-500 hover:bg-red-600 text-white py-2 px-4 rounded "
+              >
+                Delete User
+              </button>
+            </div>
+          ))}
+        </div>
       </div>
     </div>
   );
